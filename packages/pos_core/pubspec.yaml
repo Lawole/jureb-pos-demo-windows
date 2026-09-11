@@ -1,0 +1,31 @@
+name: pos_core
+description: Core domain models, database, and business logic for the POS app (platform-agnostic, reusable by desktop and future mobile clients).
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.10.4
+
+dependencies:
+  drift: ^2.23.1
+  sqlite3: ^2.7.4
+  path: ^1.9.0
+  uuid: ^4.5.1
+  crypto: ^3.0.6
+  meta: ^1.16.0
+  rxdart: ^0.28.0
+  pdf: ^3.11.1
+  intl: ^0.20.2
+
+dev_dependencies:
+  build_runner: ^2.4.15
+  drift_dev: ^2.23.1
+  lints: ^6.0.0
+  test: ^1.25.6
+
+# path_provider/sqlite3_flutter_libs are deliberately NOT dependencies here:
+# pos_core is a plain Dart package and never decides where the db file
+# lives or how native sqlite is bundled — the Flutter app passes in a
+# directory path and brings its own platform sqlite bundling. Keeping them
+# out of this package's graph also avoids pulling in jni/objective_c native-
+# asset build hooks, which the current build_runner can't AOT-compile.
